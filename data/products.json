@@ -1,0 +1,269 @@
+{
+  "as_of": "2026-06-15",
+  "rate_reference_date": "2026-06-12",
+  "source": "https://mall.epostbank.go.kr/fnIPDGDL00DMR01.do",
+  "rate_source": "https://mall.epostbank.go.kr/fnIPPSIN0000R02.do",
+  "notes": "우체국 금융상품몰의 기간별 만기이자지급식 기본금리와 상품 설명을 정규화한 프로토타입 데이터입니다.",
+  "products": [
+    {
+      "id": "200109200101",
+      "name": "초록별사랑정기예금",
+      "description": "친환경 활동과 기부 참여에 우대혜택을 제공하는 ESG 연계 정기예금",
+      "rate_ranges": [{"min_months": 12, "max_months": 12, "base_rate": 2.65}],
+      "bonus_cap": 0.6,
+      "min_amount": 1000000,
+      "max_amount": 50000000,
+      "min_term": 12,
+      "max_term": 12,
+      "allowed_terms": [12],
+      "channels": ["branch", "online"],
+      "segment": "individual",
+      "features": ["split_withdrawal", "esg"],
+      "inclusive_tags": [],
+      "source_url": "https://mall.epostbank.go.kr/IPDGDI0000.do?gds_cd=200109200101",
+      "bonus_rules": [
+        {"field": "eco_points", "op": "truthy", "rate": 0.3, "label": "탄소중립 실천포인트 가입확인"},
+        {"field": "donation", "op": "truthy", "rate": 0.2, "label": "협약기관 기부 동참"},
+        {"field": "paperless", "op": "truthy", "rate": 0.1, "label": "종이통장 미발행 또는 비대면 가입"},
+        {"field": "eco_pledge", "op": "truthy", "rate": 0.1, "label": "환경지킴 서약"}
+      ]
+    },
+    {
+      "id": "200108800101",
+      "name": "시니어싱글벙글정기예금",
+      "description": "중장년층의 목돈 관리와 추가입금·분할해지·자동재예치를 지원하는 정기예금",
+      "rate_ranges": [
+        {"min_months": 12, "max_months": 12, "base_rate": 2.65},
+        {"min_months": 24, "max_months": 24, "base_rate": 2.45},
+        {"min_months": 36, "max_months": 36, "base_rate": 2.45}
+      ],
+      "bonus_cap": 0.6,
+      "min_amount": 1000000,
+      "max_amount": null,
+      "min_term": 12,
+      "max_term": 36,
+      "allowed_terms": [12, 24, 36],
+      "channels": ["branch", "online"],
+      "segment": "individual",
+      "audience_min_age": 50,
+      "features": ["additional_deposit", "split_withdrawal", "auto_renew"],
+      "inclusive_tags": ["senior_access"],
+      "source_url": "https://mall.epostbank.go.kr/IPDGDI0000.do?gds_cd=200108800101",
+      "bonus_rules": [
+        {"field": "channel", "op": "eq", "value": "online", "rate": 0.2, "label": "비대면 가입"},
+        {"field": "age", "op": "gte", "value": 50, "rate": 0.1, "label": "만 50세 이상", "actionable": false},
+        {"field": "first_term_deposit", "op": "truthy", "rate": 0.1, "label": "정기예금 첫 거래"},
+        {"field": "salary_or_pension", "op": "truthy", "rate": 0.1, "label": "연금 또는 급여 이체"},
+        {"field": "checking_balance", "op": "gte", "value": 500000, "rate": 0.1, "label": "수시입출식 예금 평잔 50만원"},
+        {"field": "card_spend", "op": "gte", "value": 200000, "rate": 0.1, "label": "체크카드 이용 20만원"},
+        {"field": "auto_renew", "op": "truthy", "rate": 0.1, "label": "만기 자동 재예치"}
+      ]
+    },
+    {
+      "id": "200108000101",
+      "name": "우체국편리한e정기예금",
+      "description": "보너스 입금, 비상금 출금, 자동 재예치가 가능한 비대면 전용 정기예금",
+      "rate_ranges": [
+        {"min_months": 6, "max_months": 11, "base_rate": 2.6},
+        {"min_months": 12, "max_months": 12, "base_rate": 2.65}
+      ],
+      "bonus_cap": 0.6,
+      "min_amount": 1000000,
+      "max_amount": 50000000,
+      "min_term": 6,
+      "max_term": 12,
+      "channels": ["online"],
+      "segment": "individual",
+      "features": ["additional_deposit", "emergency_withdrawal", "auto_renew"],
+      "inclusive_tags": [],
+      "source_url": "https://mall.epostbank.go.kr/IPDGDI0000.do?gds_cd=200108000101",
+      "bonus_rules": [
+        {"field": "channel", "op": "eq", "value": "online", "rate": 0.2, "label": "비대면 가입"},
+        {"field": "first_term_deposit", "op": "truthy", "rate": 0.3, "label": "온라인 정기예금 첫 거래"},
+        {"field": "salary_or_pension", "op": "truthy", "rate": 0.2, "label": "급여 이체"},
+        {"field": "referral_count", "op": "gte", "value": 1, "rate": 0.1, "label": "추천번호 1건"},
+        {"field": "referral_count", "op": "gte", "value": 2, "rate": 0.1, "label": "추천번호 2건"},
+        {"field": "daily_savings", "op": "truthy", "rate": 0.1, "label": "스마트 매일적금 동시 가입"},
+        {"field": "auto_renew", "op": "truthy", "rate": 0.1, "label": "만기 자동 재예치"}
+      ]
+    },
+    {
+      "id": "200107800101",
+      "name": "우체국파트너든든정기예금",
+      "description": "우편 계약고객과 거래 우수고객에게 혜택을 제공하는 1년제 회전주기형 정기예금",
+      "rate_ranges": [{"min_months": 12, "max_months": 12, "base_rate": 2.65}],
+      "bonus_cap": 0.6,
+      "min_amount": 10000,
+      "max_amount": null,
+      "min_term": 12,
+      "max_term": 12,
+      "allowed_terms": [12],
+      "channels": ["branch", "online"],
+      "segment": "general",
+      "features": ["rotating_rate", "split_withdrawal"],
+      "inclusive_tags": [],
+      "source_url": "https://mall.epostbank.go.kr/IPDGDI0000.do?gds_cd=200107800101",
+      "bonus_rules": [
+        {"field": "channel", "op": "eq", "value": "online", "rate": 0.2, "label": "비대면 가입"},
+        {"field": "postal_contract", "op": "truthy", "rate": 0.2, "label": "우편 계약고객"},
+        {"field": "checking_balance", "op": "gte", "value": 1000000, "rate": 0.1, "label": "수시입출식 예금 평잔 100만원"},
+        {"field": "card_spend", "op": "gte", "value": 200000, "rate": 0.1, "label": "체크카드 월평균 20만원"},
+        {"field": "vip", "op": "truthy", "rate": 0.1, "label": "우체국 우수고객"}
+      ]
+    },
+    {
+      "id": "200105300101",
+      "name": "우체국소상공인정기예금",
+      "description": "소상공인과 소기업 대표자의 금융비용 절감과 자산형성을 지원하는 창구 전용 정기예금",
+      "rate_ranges": [
+        {"min_months": 12, "max_months": 23, "base_rate": 2.65},
+        {"min_months": 24, "max_months": 36, "base_rate": 2.45}
+      ],
+      "bonus_cap": 0.5,
+      "min_amount": 1000000,
+      "max_amount": 100000000,
+      "min_term": 12,
+      "max_term": 36,
+      "channels": ["branch"],
+      "segment": "business_owner",
+      "features": ["public_interest"],
+      "inclusive_tags": ["small_business"],
+      "source_url": "https://mall.epostbank.go.kr/IPDGDI0000.do?gds_cd=200105300101",
+      "bonus_rules": [
+        {"field": "business_owner", "op": "truthy", "rate": 0.3, "label": "소상공인·소기업 대표", "actionable": false},
+        {"field": "yellow_umbrella", "op": "truthy", "rate": 0.1, "label": "노란우산공제 가입"},
+        {"field": "checking_balance", "op": "gte", "value": 2000000, "rate": 0.1, "label": "수시입출식 예금 평잔 200만원"}
+      ]
+    },
+    {
+      "id": "200100200101",
+      "name": "2040+α정기예금",
+      "description": "직장인과 개인사업자의 안정적인 자금운용을 지원하는 정기예금",
+      "rate_ranges": [
+        {"min_months": 6, "max_months": 11, "base_rate": 2.6},
+        {"min_months": 12, "max_months": 23, "base_rate": 2.65},
+        {"min_months": 24, "max_months": 36, "base_rate": 2.45}
+      ],
+      "bonus_cap": 0.5,
+      "min_amount": 10000,
+      "max_amount": null,
+      "min_term": 6,
+      "max_term": 36,
+      "channels": ["branch", "online"],
+      "segment": "general",
+      "audience_max_age": 49,
+      "features": ["split_withdrawal"],
+      "inclusive_tags": [],
+      "source_url": "https://mall.epostbank.go.kr/IPDGDI0000.do?gds_cd=200100200101",
+      "bonus_rules": [
+        {"field": "channel", "op": "eq", "value": "online", "rate": 0.2, "label": "비대면 가입"},
+        {"field": "salary_or_pension", "op": "truthy", "rate": 0.1, "label": "급여 이체"},
+        {"field": "card_spend", "op": "gte", "value": 200000, "rate": 0.1, "label": "체크카드 월평균 20만원"},
+        {"field": "checking_balance", "op": "gte", "value": 1000000, "rate": 0.1, "label": "수시입출식 예금 평잔 100만원"},
+        {"field": "vip", "op": "truthy", "rate": 0.1, "label": "우체국 우수고객"}
+      ]
+    },
+    {
+      "id": "200100500101",
+      "name": "e-Postbank정기예금",
+      "description": "자동이체와 체크카드 이용실적에 우대혜택을 제공하는 비대면 전용 정기예금",
+      "rate_ranges": [
+        {"min_months": 6, "max_months": 11, "base_rate": 2.6},
+        {"min_months": 12, "max_months": 23, "base_rate": 2.65},
+        {"min_months": 24, "max_months": 36, "base_rate": 2.45}
+      ],
+      "bonus_cap": 0.5,
+      "min_amount": 5000000,
+      "max_amount": null,
+      "min_term": 6,
+      "max_term": 36,
+      "channels": ["online"],
+      "segment": "individual",
+      "features": ["split_withdrawal"],
+      "inclusive_tags": [],
+      "source_url": "https://mall.epostbank.go.kr/IPDGDI0000.do?gds_cd=200100500101",
+      "bonus_rules": [
+        {"field": "channel", "op": "eq", "value": "online", "rate": 0.2, "label": "비대면 가입"},
+        {"field": "online_product_new", "op": "truthy", "rate": 0.1, "label": "가입기간 중 온라인 상품 신규"},
+        {"field": "automatic_transfers", "op": "gte", "value": 2, "rate": 0.1, "label": "자동이체 2건 이상"},
+        {"field": "card_spend", "op": "gte", "value": 200000, "rate": 0.1, "label": "체크카드 월평균 20만원"}
+      ]
+    },
+    {
+      "id": "200106601101",
+      "name": "이웃사랑정기예금",
+      "description": "사회 취약계층, 나눔 고객, 농어촌 주민의 경제생활과 자산형성을 지원하는 창구 전용 정기예금",
+      "rate_ranges": [
+        {"min_months": 6, "max_months": 11, "base_rate": 2.6},
+        {"min_months": 12, "max_months": 23, "base_rate": 2.65},
+        {"min_months": 24, "max_months": 36, "base_rate": 2.45}
+      ],
+      "bonus_cap": 0.5,
+      "min_amount": 10000,
+      "max_amount": null,
+      "min_term": 6,
+      "max_term": 36,
+      "channels": ["branch"],
+      "segment": "vulnerable_or_rural",
+      "features": ["public_interest", "split_withdrawal"],
+      "inclusive_tags": ["vulnerable", "rural"],
+      "source_url": "https://mall.epostbank.go.kr/IPDGDI0000.do?gds_cd=200106601101",
+      "bonus_rules": [
+        {"field": "vulnerable_or_rural", "op": "truthy", "rate": 0.3, "label": "취약계층·나눔고객·농어촌 주민", "actionable": false},
+        {"field": "government_support", "op": "truthy", "rate": 0.1, "label": "정부지원금 우체국 수령"},
+        {"field": "disability_card", "op": "truthy", "rate": 0.1, "label": "장애인복지 체크카드 이용"}
+      ]
+    },
+    {
+      "id": "200107500101",
+      "name": "챔피언정기예금",
+      "description": "가입기간을 자유롭게 선택하고 분할해지가 가능한 고객맞춤형 정기예금",
+      "rate_ranges": [
+        {"min_months": 1, "max_months": 2, "base_rate": 2.0},
+        {"min_months": 3, "max_months": 5, "base_rate": 2.5},
+        {"min_months": 6, "max_months": 11, "base_rate": 2.6},
+        {"min_months": 12, "max_months": 23, "base_rate": 2.65},
+        {"min_months": 24, "max_months": 36, "base_rate": 2.45}
+      ],
+      "bonus_cap": 0.35,
+      "min_amount": 1000000,
+      "max_amount": null,
+      "min_term": 1,
+      "max_term": 36,
+      "channels": ["branch", "online"],
+      "segment": "general",
+      "features": ["flexible_term", "split_withdrawal"],
+      "inclusive_tags": [],
+      "source_url": "https://mall.epostbank.go.kr/IPDGDI0000.do?gds_cd=200107500101",
+      "bonus_rules": [
+        {"field": "channel", "op": "eq", "value": "online", "rate": 0.2, "label": "비대면 가입"},
+        {"field": "salary_or_pension", "op": "truthy", "rate": 0.1, "label": "급여 이체"},
+        {"field": "vip", "op": "truthy", "rate": 0.15, "label": "PREMIUM 우수고객"}
+      ]
+    },
+    {
+      "id": "200000100101",
+      "name": "정기예금",
+      "description": "일정 금액을 원하는 기간 동안 예치하는 기본형 정기예금",
+      "rate_ranges": [
+        {"min_months": 1, "max_months": 2, "base_rate": 2.0},
+        {"min_months": 3, "max_months": 5, "base_rate": 2.5},
+        {"min_months": 6, "max_months": 11, "base_rate": 2.6},
+        {"min_months": 12, "max_months": 23, "base_rate": 2.65},
+        {"min_months": 24, "max_months": 36, "base_rate": 2.45},
+        {"min_months": 37, "max_months": 60, "base_rate": 2.4}
+      ],
+      "bonus_cap": 0.0,
+      "min_amount": 10000,
+      "max_amount": null,
+      "min_term": 1,
+      "max_term": 60,
+      "channels": ["branch", "online"],
+      "segment": "general",
+      "features": ["flexible_term"],
+      "inclusive_tags": [],
+      "source_url": "https://mall.epostbank.go.kr/IPDGDI0000.do?gds_cd=200000100101",
+      "bonus_rules": []
+    }
+  ]
+}

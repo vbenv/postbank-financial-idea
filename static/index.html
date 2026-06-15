@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="실현 가능 금리와 포용금융 자격을 함께 비교하는 우체국 예금 추천 데모">
+  <title>우체국 예금 맞춤 추천</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">본문 바로가기</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow">우체국 예금 추천 개선안</span>
+        <h1>나이보다 실제 혜택을 먼저 봅니다</h1>
+        <p>가입 가능한 모든 정기예금을 비교해 받을 수 있는 금리, 세후 예상이자, 편의기능과 포용금융 지원 여부를 설명합니다.</p>
+      </div>
+      <div class="view-controls" aria-label="화면 보기 설정">
+        <button type="button" class="secondary" id="font-toggle" aria-pressed="false">큰 글씨</button>
+        <button type="button" class="secondary" id="contrast-toggle" aria-pressed="false">고대비</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <form class="panel form-panel" id="recommend-form">
+      <div class="section-heading">
+        <div>
+          <span class="step">1</span>
+          <h2>기본 조건을 알려주세요</h2>
+        </div>
+        <p>민감한 정보는 저장하거나 외부로 보내지 않습니다.</p>
+      </div>
+
+      <div class="preset-row" aria-label="예시 고객 불러오기">
+        <span>빠른 예시</span>
+        <button type="button" class="chip preset" data-preset="young">첫 예금 직장인</button>
+        <button type="button" class="chip preset" data-preset="senior">연금 수령 시니어</button>
+        <button type="button" class="chip preset" data-preset="business">소상공인</button>
+        <button type="button" class="chip preset" data-preset="rural">농어촌 지원대상</button>
+      </div>
+
+      <div class="form-grid">
+        <label for="age">나이
+          <input id="age" name="age" type="number" value="29" min="14" max="100" inputmode="numeric" required>
+        </label>
+        <label for="amount">예치금액
+          <input id="amount" name="amount" type="number" value="10000000" min="10000" step="10000" inputmode="numeric" required>
+        </label>
+        <label for="term_months">가입기간
+          <select id="term_months" name="term_months">
+            <option value="6">6개월</option>
+            <option value="12" selected>12개월</option>
+            <option value="24">24개월</option>
+            <option value="36">36개월</option>
+          </select>
+        </label>
+        <label for="channel">선호 가입채널
+          <select id="channel" name="channel">
+            <option value="online">인터넷·스마트뱅킹</option>
+            <option value="branch">우체국 창구</option>
+          </select>
+        </label>
+        <label class="wide" for="priority">가장 중요한 추천 기준
+          <select id="priority" name="priority">
+            <option value="highest_interest">받을 수 있는 이자가 큰 상품</option>
+            <option value="easy_conditions">우대조건이 간단한 상품</option>
+            <option value="liquidity">급할 때 자금 활용이 편한 상품</option>
+            <option value="inclusive">내 자격에 맞는 포용금융 상품</option>
+          </select>
+          <small>금리를 최우선으로 하되 선택한 기준을 함께 반영합니다.</small>
+        </label>
+      </div>
+
+      <fieldset>
+        <legend>자주 쓰는 우대조건</legend>
+        <div class="check-grid">
+          <label class="check"><input name="salary_or_pension" type="checkbox"><span>급여·연금 이체</span></label>
+          <label class="check"><input name="first_term_deposit" type="checkbox" checked><span>정기예금 첫 거래</span></label>
+          <label class="check"><input name="auto_renew" type="checkbox" checked><span>만기 자동 재예치</span></label>
+          <label class="check"><input name="paperless" type="checkbox" checked><span>종이통장 미발행</span></label>
+        </div>
+      </fieldset>
+
+      <details>
+        <summary>우대조건과 지원 자격 더 입력하기</summary>
+        <div class="detail-content">
+          <div class="form-grid">
+            <label for="checking_balance">수시입출금 예금 평잔
+              <input id="checking_balance" name="checking_balance" type="number" value="0" min="0" step="10000" inputmode="numeric">
+            </label>
+            <label for="card_spend">월 체크카드 이용액
+              <input id="card_spend" name="card_spend" type="number" value="0" min="0" step="10000" inputmode="numeric">
+            </label>
+            <label for="referral_count">추천번호 수
+              <input id="referral_count" name="referral_count" type="number" value="0" min="0" max="2" inputmode="numeric">
+            </label>
+            <label for="automatic_transfers">자동이체 건수
+              <input id="automatic_transfers" name="automatic_transfers" type="number" value="0" min="0" inputmode="numeric">
+            </label>
+          </div>
+          <fieldset>
+            <legend>추가 거래·활동 조건</legend>
+            <div class="check-grid">
+              <label class="check"><input name="eco_points" type="checkbox"><span>탄소중립 실천포인트</span></label>
+              <label class="check"><input name="donation" type="checkbox"><span>공익재단 기부</span></label>
+              <label class="check"><input name="eco_pledge" type="checkbox"><span>환경지킴 서약</span></label>
+              <label class="check"><input name="vip" type="checkbox"><span>우체국 우수고객</span></label>
+              <label class="check"><input name="postal_contract" type="checkbox"><span>우편 계약고객</span></label>
+              <label class="check"><input name="daily_savings" type="checkbox"><span>스마트 매일적금 가입</span></label>
+              <label class="check"><input name="online_product_new" type="checkbox"><span>온라인 상품 추가 가입</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="support-fieldset">
+            <legend>포용금융 지원 자격</legend>
+            <p class="field-help">아래 항목은 해당할 때만 직접 선택합니다. 추천 결과에만 사용하며 증빙서류는 받지 않습니다.</p>
+            <div class="check-grid">
+              <label class="check"><input name="business_owner" type="checkbox"><span>소상공인·소기업 대표</span></label>
+              <label class="check"><input name="yellow_umbrella" type="checkbox"><span>노란우산공제 가입</span></label>
+              <label class="check"><input name="vulnerable_or_rural" type="checkbox"><span>취약계층·나눔고객·농어촌 주민</span></label>
+              <label class="check"><input name="government_support" type="checkbox"><span>정부지원금 우체국 수령</span></label>
+              <label class="check"><input name="disability_card" type="checkbox"><span>장애인복지 체크카드 이용</span></label>
+            </div>
+          </fieldset>
+        </div>
+      </details>
+
+      <button class="primary submit-button" type="submit" id="submit-button">전체 상품 비교하기</button>
+      <p class="error-message" id="form-error" role="alert" hidden></p>
+    </form>
+
+    <section id="output" hidden aria-labelledby="result-title">
+      <div class="section-heading result-heading">
+        <div>
+          <span class="step">2</span>
+          <h2 id="result-title">추천 결과</h2>
+        </div>
+        <p id="priority-description"></p>
+      </div>
+      <div class="freshness" id="freshness" role="status"></div>
+      <div class="summary" id="summary"></div>
+      <div class="results" id="results"></div>
+    </section>
+
+    <section class="panel advisor-panel" id="advisor" hidden aria-labelledby="advisor-title">
+      <div class="section-heading">
+        <div>
+          <span class="step">3</span>
+          <h2 id="advisor-title">선택형 상품 도우미</h2>
+        </div>
+        <p>질문을 입력하지 않고 버튼만 고르세요.</p>
+      </div>
+      <p class="advisor-intro">현재 추천 결과와 공식 상품정보에서 관련 근거를 찾아 답합니다. 외부 AI 서비스로 정보가 전송되지 않습니다.</p>
+      <div class="question-grid" id="question-grid"></div>
+      <div class="answer-box" id="answer-box" aria-live="polite" hidden>
+        <strong>상품 도우미 답변</strong>
+        <p id="answer-text"></p>
+        <div id="answer-sources"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>예상 세후이자는 일반과세 15.4%를 가정한 참고값입니다. 실제 가입 전 최신 상품설명서와 확정금리를 확인하세요.</p>
+  </footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>
